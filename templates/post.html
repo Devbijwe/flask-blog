@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block bg %}
+<!-- Page Header-->
+{% set img='assets/img/'+post.img_url %}
+<header class="masthead" style="background: url(' {{ url_for('static',filename= img) }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>
+                    <h2 class="subheading">{{post.tagLine}}</h2>
+                    <span class="meta">
+                                Posted by
+                                <a href="#!">{{post.postedBy}}</a>
+                                {{post.date}}
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %} {% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post Content-->
+
+            <p>{{post.details}}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

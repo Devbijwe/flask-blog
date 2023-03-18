@@ -1,0 +1,56 @@
+{% extends "layout.html" %} {% block bg %}
+<header class="masthead" style="background: url(' {{ url_for('static',filename='assets/img/admin-bg.jfif ')  }}')">
+    <div class=" container position-relative px-4 px-lg-5 ">
+        <div class="row gx-4 gx-lg-5 justify-content-center ">
+            <div class="col-md-10 col-lg-8 col-xl-7 ">
+                <div class="site-heading ">
+                    <h1>{{params['title']}}</h1>
+                    <span class="subheading ">A Blog Theme by {{params['author']}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>{% endblock %}{% block content %}
+<div class="container" style="margin: auto; width: 100%; ">
+    <a class="btn btn-primary text-uppercase" href="/edit/0">add or edit post</a>
+    <a class="btn btn-primary text-uppercase" href="/logout">Log Out</a>
+</div>
+<hr>
+<div class="container" style="margin: auto; width: 100%; ">
+    <form action="/uploader" method="post" enctype="multipart/form-data">
+        <input type="file" name="fileF" />
+        <input type="submit" />
+    </form>
+</div>
+<hr>
+<div class="container" style="margin: auto; width: 100%; ">
+    <table class="table table-striped table-hover table-responsive container-fluid" style="table-layout: auto; width:100%;">
+        <caption style="caption-side:top; text-align:center;">
+            <h3>Posts:</h3>
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">SR</th>
+                <th scope="col">SLUG</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">DATE</th>
+                <th scope="col">EDIT</th>
+                <th scope="col">UPLOAD</th>
+
+            </tr>
+        </thead>
+        <tbody>{% for items in posts %}
+            <tr>
+                <th scope="row">{{items.srNo}}</th>
+                <td>{{items.slug}}</td>
+                <td>{{items.title}}</td>
+                <td>{{items.date}}</td>
+                <td><a href="/edit/{{items.srNo}}"><button class="btn btn-primary text-uppercase">Edit</button></a></td>
+                <td><a href="/delete/{{items.srNo}}"><button class="btn btn-primary text-uppercase" >Delete</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

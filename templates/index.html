@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block bg %}
+<!-- Page Header-->
+<header class="masthead" style="background: url(' {{ url_for('static',filename='assets/img/home-bg.jpg ') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{params['title']}}</h1>
+                    <span class="subheading">A Blog Theme by {{params['author']}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+<!-- Main Content-->
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% for item in posts %}
+
+            <div class="post-preview">
+                <a href="/post/{{item.slug}}">
+
+                    <h2 class="post-title">{{ item.title }}</h2>
+                    <h3 class="post-subtitle">{{ item.tagLine }}</h3>
+
+                    <p class="post-meta">
+                        Posted by
+                        <a href="#!">{{ item.postedBy }}</a> on {{ item.date }}
+                    </p>
+                </a>
+            </div>
+            <hr class="my-4" /> {% endfor %}
+            <!-- Pager-->
+            <div class="d-flex justify-content-between"><a class="btn btn-primary text-uppercase d-inline-flex" href="{{prev}}">🢠 Previous  </a><a class="btn btn-primary justify-content-end d-inline-flex text-uppercase" href="{{next}}">Next 🢡</a></div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
